@@ -11,4 +11,5 @@ public class GameScenes
 {
     public static GameManager globalGameManager;
     public static SoundManager globalSoundManager;
+    public static PlayerDrag globalPlayerDrag;
 }
