@@ -10,10 +10,12 @@ public class PlayerDrag : MonoBehaviour
     public event Action<Vector3> OnDrag;       // 드래그 중 이벤트
     public event Action<Vector3> OnDragEnd;    // 드래그 끝 이벤트
     public int dragCnt = 0;
+    public bool isMoving = false;
 
     private Vector3 dragStartPosition;
     private bool isDragging = false;
     private PlayerMovement playerMovement;
+    private float curDragDistance = 0;
 
     private void Awake()
     {
@@ -60,9 +62,16 @@ public class PlayerDrag : MonoBehaviour
         currentMousePosition.y = transform.position.y;
         Vector3 dragDirection = dragStartPosition - currentMousePosition;
         float dragDistance = Mathf.Clamp(dragDirection.magnitude, minDragDistance, maxDragDistance);
+        curDragDistance = dragDistance;
         isDragging = false;
         dragCnt++; // 드래그  카운트
         OnDragEnd?.Invoke(currentMousePosition); // 이벤트 발생
         playerMovement.LaunchPlayer(dragDirection, dragDistance); // 플레이어 이동
+        isMoving = true;
+    }
+
+    public float GetDragDistance()
+    {
+        return curDragDistance;
     }
 }
