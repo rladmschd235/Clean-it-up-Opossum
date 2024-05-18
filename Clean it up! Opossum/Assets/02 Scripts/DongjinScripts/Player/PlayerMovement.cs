@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10000f;      // 회전 토크의 크기 (더 큰 값으로 더 빠른 회전)
     [SerializeField] private float bounceMultiplier = 100f;     //튕기는 속도 보강
     [SerializeField] private float decelerationSpeed = 0.99f;   // 감속 계수(낮을 수록 감속이 증가함)
+    [SerializeField] private float stopSpeed = 0.1f;                             //이 속도이하면 멈춤
     private int bounceCnt = 0;                                  // 튕김 횟수
     private Rigidbody rb;                                       // 리지드바디 컴포넌트
 
@@ -21,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
         if (GameScenes.globalPlayerDrag.isMoving)
         {
             rb.velocity = new Vector3(rb.velocity.x * decelerationSpeed, 0f, rb.velocity.z * decelerationSpeed);
+           if(rb.velocity.magnitude < stopSpeed)
+            {
+                rb.velocity = Vector3.zero;
+                transform.position = GameScenes.globalPlayerDrag.startTrms[0].position;
+                GameScenes.globalPlayerDrag.isMoving = false;
+            }
         }
     }
 
