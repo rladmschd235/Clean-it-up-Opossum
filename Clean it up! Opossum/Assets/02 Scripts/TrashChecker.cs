@@ -8,12 +8,7 @@ public class TrashChecker : MonoBehaviour
 
     private void Awake()
     {
-        // 글로벌에 저장하기
-    }
-
-    private void Update()
-    {
-        
+        GameScenes.globalTrashChecker = this;
     }
 
     public void SetTrashCount()
@@ -26,7 +21,7 @@ public class TrashChecker : MonoBehaviour
         if(other.CompareTag("Trash"))
         {
             trashCount++;
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
         }
     }
 }
