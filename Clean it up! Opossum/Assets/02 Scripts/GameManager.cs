@@ -19,23 +19,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void GameStart()
+    public void GameStart()
     {
-        isGameStart = true;
+        isGameStart = false;
 
         // 메인 화면 UI 활성화
         // 실행 화면 UI 활성화
         // 재시작 화면 UI 비활성화
     }
 
-    private void GamePlay()
+    public void GamePlay()
     {
+        isGameStart = true;
+
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 활성화
         // 재시작 화면 UI 비활성화
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         isGameStart = false;
 
@@ -44,8 +46,10 @@ public class GameManager : MonoBehaviour
         // 재시작 화면 UI 활성화
     }
 
-    private void GameClear()
+    public void GameClear()
     {
+        isGameStart = false;
+
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 비활성화 
         // 재시작 화면 UI 활성화
