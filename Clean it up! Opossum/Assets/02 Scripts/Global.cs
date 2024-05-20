@@ -12,4 +12,9 @@ public class GameScenes
     public static GameManager globalGameManager;
     public static SoundManager globalSoundManager;
     public static PlayerDrag globalPlayerDrag;
+    public static PlayerRespawn globalPlayerRespawn;
+    public static TrashChecker globalTrashChecker;
+    public static StageManager globalStageManager;
+    public static DragUIManager globalDragUIManager;
+    public static PlayerMovement globalPlayerMovement;
 }
