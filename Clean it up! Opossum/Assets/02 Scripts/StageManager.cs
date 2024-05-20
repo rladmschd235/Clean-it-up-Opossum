@@ -34,7 +34,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private void StageSetting()
+    public void StageSetting()
     {
         level = stageDB.StageDBEntities[stageNumber].level;
         chance = stageDB.StageDBEntities[stageNumber].level;
@@ -46,7 +46,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private void StageNumberUpdate()
+    public void StageNumberUpdate()
     {
         // 획득한 쓰레기 개수 초기화
         GameScenes.globalTrashChecker.SetTrashCount();
@@ -80,7 +80,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    private void StageActivate(int stageNumber)
+    public void StageActivate(int stageNumber)
     {
         transform.GetChild(stageNumber - 1).gameObject.SetActive(false); // 이전 스테이지 비활성화
         transform.GetChild(stageNumber).gameObject.SetActive(true); // 다음 스테이지 활성화
