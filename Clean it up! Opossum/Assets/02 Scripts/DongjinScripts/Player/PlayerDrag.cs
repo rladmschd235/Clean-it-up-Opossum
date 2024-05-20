@@ -26,6 +26,7 @@ public class PlayerDrag : MonoBehaviour
 
     void Update()
     {
+        if (!GameScenes.globalGameManager.isGameStart) return;
         if (isMoving) return;
         if (Input.GetMouseButtonDown(0))
         {
