@@ -1,50 +1,87 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float forceMultiplier = 10.0f;     // 이동에 적용할 힘의 배수
-    [SerializeField] private float rotationSpeed = 10000f;      // 회전 토크의 크기 (더 큰 값으로 더 빠른 회전)
-    [SerializeField] private float bounceMultiplier = 100f;     //튕기는 속도 보강
-    [SerializeField] private float decelerationSpeed = 0.99f;   // 감속 계수(낮을 수록 감속이 증가함)
-    [SerializeField] private float stopSpeed = 0.1f;                             //이 속도이하면 멈춤
-    private int bounceCnt = 0;                                  // 튕김 횟수
-    private Rigidbody rb;                                       // 리지드바디 컴포넌트
+    //움직임 변수
+    [SerializeField] private float initialMoveForce = 500f;                                 // 처음 이동할 때 적용할 힘
+    [SerializeField] private float rotationSpeed = 360f;                                    // 회전 속도 (도/초)
+    [SerializeField] private float bounceForce = 300f;                                     // 벽에 튕길 때 적용할 힘
+    //감속 변수
+    [SerializeField, Range(1, 1000)] private float decelerationValue = 500f;      // 감속 비율 (초당 속도 감소량)
+    [SerializeField] private float stopThreshold = 1f;                                      // 멈춤 기준 속도
+
+    private int bounceCount = 0;                               // 튕긴 횟수
+    private Rigidbody rb;                                      // 리지드바디 컴포넌트
+
+    private void Awake()
+    {
+        GameScenes.globalPlayerMovement = this;
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();      // 리지드바디 컴포넌트 찾기
+        rb = GetComponent<Rigidbody>();        // 리지드바디 컴포넌트 찾기
+        GameScenes.globalPlayerDrag.OnMoveStart += LaunchPlayer;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (GameScenes.globalPlayerDrag.isMoving)
         {
-            rb.velocity = new Vector3(rb.velocity.x * decelerationSpeed, 0f, rb.velocity.z * decelerationSpeed);
-           if(rb.velocity.magnitude < stopSpeed)
-            {
-                rb.velocity = Vector3.zero;
-                GameScenes.globalPlayerDrag.isMoving = false;
-            }
+            ApplyDeceleration();
         }
     }
 
-    public void LaunchPlayer(Vector3 direction, float distance)
+    private void ApplyDeceleration()
     {
-        // 리지드바디를 사용하여 플레이어에게 힘을 가함
-        Vector3 force = direction * distance;
+        // 감속 비율을 1~1000 범위로 조정하여 0.9~0.999 사이로 변환
+        float decelerationFactor = Mathf.Lerp(0.8f, 0.99f, decelerationValue / 1000f);
+
+        // 현재 속도를 감속 비율에 따라 감소시킴
+        rb.velocity = new Vector3(rb.velocity.x * decelerationFactor, 0f, rb.velocity.z * decelerationFactor);
+
+        Debug.Log($"현재 속도: {rb.velocity.magnitude}");
+
+        // 속도가 멈춤 기준 이하일 때 플레이어를 멈춤
+        if (rb.velocity.magnitude < stopThreshold)
+        {
+            rb.velocity = Vector3.zero;
+            GameScenes.globalPlayerDrag.isMoving = false;
+            Debug.Log("플레이어가 멈췄습니다.");
+        }
+    }
+
+    public void LaunchPlayer(Vector3 direction, float power)
+    {
+        // 리지드바디에 초기 이동 힘을 가함
+        Vector3 force = direction * power * initialMoveForce;
+        Debug.Log($"방향: {direction}, 힘: {force}");
         rb.AddForce(force, ForceMode.Impulse);
 
         // 회전 토크를 추가
-        rb.AddTorque(transform.up * rotationSpeed, ForceMode.Impulse);
+        rb.AddTorque(transform.up * rotationSpeed * Mathf.Deg2Rad, ForceMode.Impulse);
     }
 
     void OnCollisionEnter(Collision collision)
-    { 
-        var cp = collision.GetContact(0);
-        var dir = transform.position - cp.point;
-        rb.AddForce((dir).normalized * (GameScenes.globalPlayerDrag.GetDragDistance() * bounceMultiplier / (bounceCnt + 1)));
-        bounceCnt++;
+    {
+        if (!collision.collider.CompareTag("Wall")) return;
+        var contactPoint = collision.GetContact(0);
+        var collisionDirection = transform.position - contactPoint.point;
+        Vector3 bounceForceVector = collisionDirection.normalized * bounceForce / (bounceCount + 1);
+        rb.AddForce(bounceForceVector, ForceMode.Impulse);
+        bounceCount++;
     }
+
+    #region 테스트용
+    public Rigidbody GetRb() //테스트용
+    {
+        return rb;
+    }
+
+    public void SetRb(Rigidbody setRb)
+    {
+        rb.velocity = setRb.velocity;
+    }
+    #endregion
 }

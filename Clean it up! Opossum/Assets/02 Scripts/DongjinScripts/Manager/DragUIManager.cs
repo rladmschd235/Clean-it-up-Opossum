@@ -14,6 +14,11 @@ public class DragUIManager : MonoBehaviour
     private Image[] joystickSet; //0번: 배경 / 1번: 레버
     private Vector3 leverStartPosition; // 레버의 초기 위치
 
+    private void Awake()
+    {
+        GameScenes.globalDragUIManager = this;
+    }
+
     void Start()
     {
         arrow.enabled = false;

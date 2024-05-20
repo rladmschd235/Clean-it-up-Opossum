@@ -7,6 +7,7 @@ public class PlayerDrag : MonoBehaviour
     [SerializeField] private float minDragDistance = 0.0f;  // 최소 드래그 거리
     [SerializeField] public Transform[] startTrms;          //시작 지점
 
+    public event Action<Vector3, float> OnMoveStart; //움직임 전달
     public event Action<Vector3> OnDragStart;  // 드래그 시작 이벤트
     public event Action<Vector3> OnDrag;       // 드래그 중 이벤트
     public event Action<Vector3> OnDragEnd;    // 드래그 끝 이벤트
@@ -15,13 +16,13 @@ public class PlayerDrag : MonoBehaviour
 
     private Vector3 dragStartPosition;         //드래그 시작 위치
     private bool isDragging = false;           //드래그 중인가?
-    private PlayerMovement playerMovement;     
-    private float curDragDistance = 0;         //현재 드래그 된 정도
+    private bool isEndDragging = false;
+    private Vector3 dragDirection;
+    private float dragDistance;
 
     private void Awake()
     {
         GameScenes.globalPlayerDrag = this;
-        playerMovement = gameObject.GetComponent<PlayerMovement>();
     }
 
     void Update()
@@ -39,6 +40,15 @@ public class PlayerDrag : MonoBehaviour
         else if (Input.GetMouseButtonUp(0) && isDragging)
         {
             EndDrag();
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isEndDragging)
+        {
+            OnMoveStart.Invoke(dragDirection.normalized, dragDistance);
+            isEndDragging = false;
         }
     }
 
@@ -61,20 +71,19 @@ public class PlayerDrag : MonoBehaviour
 
     private void EndDrag()
     {
+        isMoving = true;
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y));
         currentMousePosition.y = transform.position.y;
-        Vector3 dragDirection = dragStartPosition - currentMousePosition;
-        float dragDistance = Mathf.Clamp(dragDirection.magnitude, minDragDistance, maxDragDistance);
-        curDragDistance = dragDistance;
+        dragDirection = dragStartPosition - currentMousePosition;
+        dragDistance = Mathf.Clamp(dragDirection.magnitude, minDragDistance, maxDragDistance);
         isDragging = false;
         dragCnt++; // 드래그  카운트
         OnDragEnd?.Invoke(currentMousePosition); // 이벤트 발생
-        playerMovement.LaunchPlayer(dragDirection, dragDistance); // 플레이어 이동
-        isMoving = true;
+        isEndDragging = true;
     }
 
     public float GetDragDistance()
     {
-        return curDragDistance;
+        return dragDistance;
     }
 }
