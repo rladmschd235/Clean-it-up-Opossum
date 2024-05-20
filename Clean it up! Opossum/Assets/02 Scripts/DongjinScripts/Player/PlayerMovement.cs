@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
            if(rb.velocity.magnitude < stopSpeed)
             {
                 rb.velocity = Vector3.zero;
-                transform.position = GameScenes.globalPlayerDrag.startTrms[0].position;
                 GameScenes.globalPlayerDrag.isMoving = false;
             }
         }

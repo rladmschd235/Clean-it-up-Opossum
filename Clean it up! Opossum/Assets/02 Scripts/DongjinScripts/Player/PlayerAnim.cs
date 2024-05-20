@@ -23,6 +23,7 @@ public class PlayerAnim : MonoBehaviour
     
     void Update()
     {
+        if (!GameScenes.globalGameManager.isGameStart) return;
         if(!GameScenes.globalPlayerDrag.isMoving)
         {
             isIdle = true;
