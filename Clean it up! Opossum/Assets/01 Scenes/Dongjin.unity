@@ -2064,11 +2064,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a10603f77d4cb449a90e51db2cf32c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceMultiplier: 10
+  initialMoveForce: 500
   rotationSpeed: 10000
-  bounceMultiplier: 300
-  decelerationSpeed: 0.99
-  stopSpeed: 0.1
+  bounceForce: 300
+  decelerationValue: 528
+  stopThreshold: 1
 --- !u!54 &1854467428
 Rigidbody:
   m_ObjectHideFlags: 0
