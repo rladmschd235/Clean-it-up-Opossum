@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private int bounceCount = 0;                               // 튕긴 횟수
     private Rigidbody rb;                                      // 리지드바디 컴포넌트
     private bool isDecelerating = false;
+    private float decelerationFactor;
 
     private void Awake()
     {
@@ -23,40 +24,38 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();        // 리지드바디 컴포넌트 찾기
+        decelerationFactor = Mathf.Lerp(0.8f, 0.99f, decelerationValue / 1000f);
         GameScenes.globalPlayerDrag.OnMoveStart += LaunchPlayer;
     }
 
     private void FixedUpdate()
     {
-        if (GameScenes.globalPlayerDrag.isMoving && !isDecelerating)
+        if (GameScenes.globalPlayerDrag.isMoving)
         {
-            StartCoroutine(ApplyDeceleration());
-        }
-        else if(!GameScenes.globalPlayerDrag.isMoving && isDecelerating)
-        {
-            StopCoroutine(ApplyDeceleration());
+            ApplyDeceleration();
         }
     }
 
-    //private void ApplyDeceleration()
-    //{
-    //    // 감속 비율을 1~1000 범위로 조정하여 0.9~0.999 사이로 변환
-    //    float decelerationFactor = Mathf.Lerp(0.8f, 0.99f, decelerationValue / 1000f);
+    private void ApplyDeceleration()
+    {
+        // 감속 비율을 1~1000 범위로 조정하여 0.9~0.999 사이로 변환
+        decelerationFactor = Mathf.Lerp(0.8f, 0.99f, decelerationValue / 1000f);
 
-    //    // 현재 속도를 감속 비율에 따라 감소시킴
-    //    rb.velocity = new Vector3(rb.velocity.x * decelerationFactor, 0f, rb.velocity.z * decelerationFactor);
+        // 현재 속도를 감속 비율에 따라 감소시킴
+        rb.velocity = new Vector3(rb.velocity.x * decelerationFactor, 0f, rb.velocity.z * decelerationFactor);
 
-    //    Debug.Log($"현재 속도: {rb.velocity.magnitude}");
+        Debug.Log($"현재 속도: {rb.velocity.magnitude}");
 
-    //    // 속도가 멈춤 기준 이하일 때 플레이어를 멈춤
-    //    if (rb.velocity.magnitude < stopThreshold)
-    //    {
-    //        rb.velocity = Vector3.zero;
-    //        rb.angularVelocity = Vector3.zero;
-    //        GameScenes.globalPlayerDrag.isMoving = false;
-    //        Debug.Log("플레이어가 멈췄습니다.");
-    //    }
-    //}
+        // 속도가 멈춤 기준 이하일 때 플레이어를 멈춤
+        if (rb.velocity.magnitude < stopThreshold)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            GameScenes.globalPlayerDrag.isMoving = false;
+            bounceCount = 0;
+            Debug.Log("플레이어가 멈췄습니다.");
+        }
+    }
 
     public void LaunchPlayer(Vector3 direction, float power)
     {
@@ -77,32 +76,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 bounceForceVector = collisionDirection.normalized * bounceForce / (bounceCount + 1);
         rb.AddForce(bounceForceVector, ForceMode.Impulse);
         bounceCount++;
-    }
-
-    IEnumerator ApplyDeceleration()
-    {
-        yield return new WaitForSeconds(0.5f);
-        while (true)
-        {
-            // 감속 비율을 1~1000 범위로 조정하여 0.9~0.999 사이로 변환
-            float decelerationFactor = Mathf.Lerp(0.8f, 0.99f, decelerationValue / 1000f);
-
-            // 현재 속도를 감속 비율에 따라 감소시킴
-            rb.velocity = new Vector3(rb.velocity.x * decelerationFactor, 0f, rb.velocity.z * decelerationFactor);
-
-            Debug.Log($"현재 속도: {rb.velocity.magnitude}");
-
-            // 속도가 멈춤 기준 이하일 때 플레이어를 멈춤
-            if (rb.velocity.magnitude < stopThreshold)
-            {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                GameScenes.globalPlayerDrag.isMoving = false;
-                isDecelerating = false;
-                Debug.Log("플레이어가 멈췄습니다.");
-            }
-            yield return new WaitForSeconds(0.01f);
-        }
     }
 
     #region 테스트용

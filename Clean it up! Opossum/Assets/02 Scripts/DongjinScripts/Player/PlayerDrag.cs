@@ -41,10 +41,14 @@ public class PlayerDrag : MonoBehaviour
         {
             EndDrag();
         }
+    }
 
+    private void FixedUpdate()
+    {
         if (isEndDragging)
         {
             OnMoveStart.Invoke(dragDirection.normalized, dragDistance);
+            isMoving = true;
             isEndDragging = false;
         }
     }
@@ -76,7 +80,6 @@ public class PlayerDrag : MonoBehaviour
         dragCnt++; // 드래그  카운트
         OnDragEnd?.Invoke(currentMousePosition); // 이벤트 발생
         isEndDragging = true;
-        isMoving = true;
     }
 
     public float GetDragDistance()

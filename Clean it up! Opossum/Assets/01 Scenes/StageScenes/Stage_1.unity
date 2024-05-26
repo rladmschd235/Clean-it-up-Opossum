@@ -2219,8 +2219,8 @@ MonoBehaviour:
   initialMoveForce: 10
   rotationSpeed: 10000
   bounceForce: 100
-  decelerationValue: 979
-  stopThreshold: 1
+  decelerationValue: 930
+  stopThreshold: 0.1
 --- !u!114 &1955871039
 MonoBehaviour:
   m_ObjectHideFlags: 0
