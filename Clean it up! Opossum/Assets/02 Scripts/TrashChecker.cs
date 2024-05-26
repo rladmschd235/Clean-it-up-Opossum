@@ -21,6 +21,7 @@ public class TrashChecker : MonoBehaviour
         if(other.CompareTag("Trash"))
         {
             trashCount++;
+            GameScenes.globalUIManager.UpdateSlider();
             other.gameObject.SetActive(false);
         }
     }

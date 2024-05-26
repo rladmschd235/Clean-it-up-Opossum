@@ -27,9 +27,15 @@ public class UIManager : MonoBehaviour
     public Transform chanceImageContainer;
     private List<GameObject> chanceImages = new List<GameObject>(); // 생성된 Chance 관리 리스트
 
+    private void Awake()
+    {
+        GameScenes.globalUIManager = this;
+    }
+
     void Start()
     {
-        ShowMainUI();
+        GameScenes.globalStageManager.StageSetting();
+
         //CreateChanceImages();
 
         // 슬라이더 초기값 설정
@@ -63,11 +69,9 @@ public class UIManager : MonoBehaviour
 
     public void ShowInGameUI() // 인게임 UI 패널 활성화
     {
-        //GameScenes.globalStageManager.StageSetting();
-
         HideAllUI();
 
-        //stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
+        stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
 
         inGameUI.SetActive(true);
 
@@ -83,7 +87,7 @@ public class UIManager : MonoBehaviour
         HideAllUI();
         mainUI.SetActive(true);
 
-        //stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
+        stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
 
         reButton.gameObject.SetActive(true);
         settingButton.gameObject.SetActive(true);
@@ -101,10 +105,11 @@ public class UIManager : MonoBehaviour
         settingButton.gameObject.SetActive(false);
         pauseButton.gameObject.SetActive(false);
     }
+
     public void ShowClearUI() // 게임 클리어 UI 패널 활성화
     {
-        //GameScenes.globalStageManager.StageSetting();
-        //GameScenes.globalStageManager.StageNumberUpdate();
+        GameScenes.globalStageManager.StageSetting();
+        GameScenes.globalStageManager.StageNumberUpdate();
 
         HideAllUI();
         clearUI.SetActive(true);

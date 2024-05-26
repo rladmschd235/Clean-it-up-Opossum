@@ -19,12 +19,12 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
-    private void PosSave()
+    private void PosSave() // 드래그 시 위치 저장
     {
         savePos = transform.position;
     }
 
-    private void PosLoad()
+    private void PosLoad() // 저장 된 위치 불러오기
     {
         transform.position = savePos;
     }

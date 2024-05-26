@@ -11,12 +11,9 @@ public class GameManager : MonoBehaviour
         GameScenes.globalGameManager = this;
     }
 
-    private void Update()
+    private void Start()
     {
-        if(Input.touchCount > 0)
-        {
-            GameStart();
-        }
+        GameStart();
     }
 
     public void GameStart()
@@ -26,6 +23,7 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 활성화
         // 실행 화면 UI 활성화
         // 재시작 화면 UI 비활성화
+        GameScenes.globalUIManager.ShowMainUI();
     }
 
     public void GamePlay()
@@ -35,6 +33,7 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 활성화
         // 재시작 화면 UI 비활성화
+        GameScenes.globalUIManager.ShowInGameUI();
     }
 
     public void GameOver()
@@ -44,6 +43,7 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 비활성화 
         // 재시작 화면 UI 활성화
+        GameScenes.globalUIManager.ShowOverUI();
     }
 
     public void GameClear()
@@ -53,5 +53,6 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 비활성화 
         // 재시작 화면 UI 활성화
+        GameScenes.globalUIManager.ShowClearUI();
     }
 }
