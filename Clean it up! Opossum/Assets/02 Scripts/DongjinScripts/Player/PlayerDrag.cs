@@ -41,10 +41,7 @@ public class PlayerDrag : MonoBehaviour
         {
             EndDrag();
         }
-    }
 
-    private void FixedUpdate()
-    {
         if (isEndDragging)
         {
             OnMoveStart.Invoke(dragDirection.normalized, dragDistance);
@@ -71,7 +68,6 @@ public class PlayerDrag : MonoBehaviour
 
     private void EndDrag()
     {
-        isMoving = true;
         Vector3 currentMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y));
         currentMousePosition.y = transform.position.y;
         dragDirection = dragStartPosition - currentMousePosition;
@@ -80,6 +76,7 @@ public class PlayerDrag : MonoBehaviour
         dragCnt++; // 드래그  카운트
         OnDragEnd?.Invoke(currentMousePosition); // 이벤트 발생
         isEndDragging = true;
+        isMoving = true;
     }
 
     public float GetDragDistance()
