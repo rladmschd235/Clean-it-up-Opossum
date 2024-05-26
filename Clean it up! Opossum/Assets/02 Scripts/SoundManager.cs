@@ -64,4 +64,16 @@ public class SoundManager : MonoBehaviour
     {
         audioSourceEffectsPlayers.Stop();
     }
+
+    // BGM º¼·ý Á¶Àý
+    public void SetBGMVolume(float volume)
+    {
+        audioSourceBgmPlayers.volume = volume;
+    }
+
+    // SFX º¼·ý Á¶Àý
+    public void SetSFXVolume(float volume)
+    {
+        audioSourceEffectsPlayers.volume = volume;
+    }
 }
