@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
     public Button pauseButton;
     public Slider scoreSlider;
 
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+
     public TextMeshProUGUI stageText;
 
     public GameObject chanceImagePrefab;
@@ -28,6 +31,14 @@ public class UIManager : MonoBehaviour
     {
         ShowMainUI();
         //CreateChanceImages();
+
+        // 슬라이더 초기값 설정
+        //bgmSlider.value = GameScenes.globalSoundManager.audioSourceBgmPlayers.volume;
+        //sfxSlider.value = GameScenes.globalSoundManager.audioSourceEffectsPlayers.volume;
+
+        // 슬라이더 값 변경 시 이벤트 등록
+        //bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+        //sfxSlider.onValueChanged.AddListener(SetSFXVolume);
     }
 
     private void Update()
@@ -174,5 +185,15 @@ public class UIManager : MonoBehaviour
                 chanceImages[i].SetActive(false);
             }
         }
+    }
+
+    public void SetBGMVolume(float volume)
+    {
+        GameScenes.globalSoundManager.SetBGMVolume(volume);
+    }
+
+    public void SetSFXVolume(float volume)
+    {
+        GameScenes.globalSoundManager.SetSFXVolume(volume);
     }
 }

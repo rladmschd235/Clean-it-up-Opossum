@@ -2098,7 +2098,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027791353}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetBGMVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1027791352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2150,8 @@ MonoBehaviour:
   settingButton: {fileID: 1241043731}
   pauseButton: {fileID: 555591451}
   scoreSlider: {fileID: 922639629}
+  bgmSlider: {fileID: 1027190357}
+  sfxSlider: {fileID: 1306687393}
   stageText: {fileID: 966443917}
   chanceImagePrefab: {fileID: 8002053794086445131, guid: dff5381bcdace0a4bb3aa6f2cc40faf4, type: 3}
   chanceImageContainer: {fileID: 130976088}
@@ -2809,7 +2823,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1027791353}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1314372356
 GameObject:
   m_ObjectHideFlags: 0
