@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     private int bounceCount = 0;                               // 튕긴 횟수
     private Rigidbody rb;                                      // 리지드바디 컴포넌트
-    private bool isDecelerating = false;
     private float decelerationFactor;
 
     private void Awake()
@@ -38,9 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApplyDeceleration()
     {
-        // 감속 비율을 1~1000 범위로 조정하여 0.9~0.999 사이로 변환
-        decelerationFactor = Mathf.Lerp(0.8f, 0.99f, decelerationValue / 1000f);
-
         // 현재 속도를 감속 비율에 따라 감소시킴
         rb.velocity = new Vector3(rb.velocity.x * decelerationFactor, 0f, rb.velocity.z * decelerationFactor);
 
@@ -63,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 force = direction * power * initialMoveForce;
         Debug.Log($"방향: {direction}, 힘: {force}");
         rb.AddForce(force, ForceMode.Impulse);
+
+        Debug.Log($"현재 속도: {rb.velocity.magnitude}");
 
         // 회전 토크를 추가
         rb.AddTorque(transform.up * rotationSpeed * Mathf.Deg2Rad, ForceMode.Impulse);

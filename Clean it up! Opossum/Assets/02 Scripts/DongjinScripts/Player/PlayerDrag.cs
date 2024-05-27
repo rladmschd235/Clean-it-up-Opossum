@@ -1,5 +1,6 @@
 using UnityEngine;
 using System; // System 네임스페이스 추가
+using System.Collections;
 
 public class PlayerDrag : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class PlayerDrag : MonoBehaviour
         if (isEndDragging)
         {
             OnMoveStart.Invoke(dragDirection.normalized, dragDistance);
-            isMoving = true;
+            StartCoroutine(SetIsMovingNextFrame());
             isEndDragging = false;
         }
     }
@@ -85,5 +86,11 @@ public class PlayerDrag : MonoBehaviour
     public float GetDragDistance()
     {
         return dragDistance;
+    }
+
+    private IEnumerator SetIsMovingNextFrame()
+    {
+        yield return new WaitForFixedUpdate();
+        isMoving = true;
     }
 }

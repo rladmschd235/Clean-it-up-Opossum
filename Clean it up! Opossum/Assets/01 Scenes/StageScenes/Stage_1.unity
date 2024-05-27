@@ -2216,10 +2216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a10603f77d4cb449a90e51db2cf32c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialMoveForce: 10
+  initialMoveForce: 50
   rotationSpeed: 10000
-  bounceForce: 100
-  decelerationValue: 930
+  bounceForce: 50
+  decelerationValue: 839
   stopThreshold: 0.1
 --- !u!114 &1955871039
 MonoBehaviour:
