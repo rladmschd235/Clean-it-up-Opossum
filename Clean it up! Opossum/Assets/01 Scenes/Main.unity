@@ -738,8 +738,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2112487290}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+      - m_Target: {fileID: 56807493}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: SetSFXVolume
         m_Mode: 4
         m_Arguments:
@@ -1841,8 +1841,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2112487290}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+      - m_Target: {fileID: 56807493}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
         m_MethodName: SetBGMVolume
         m_Mode: 4
         m_Arguments:
@@ -6122,8 +6122,6 @@ MonoBehaviour:
   settingButton: {fileID: 930335254}
   pauseButton: {fileID: 532222460}
   scoreSlider: {fileID: 896774709}
-  bgmSlider: {fileID: 766911985}
-  sfxSlider: {fileID: 345107900}
   stageText: {fileID: 1564932899}
   chanceImagePrefab: {fileID: 8002053794086445131, guid: dff5381bcdace0a4bb3aa6f2cc40faf4, type: 3}
   chanceImageContainer: {fileID: 1722969687}
@@ -6231,9 +6229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialMoveForce: 10
-  rotationSpeed: 10000
-  bounceForce: 8
-  decelerationValue: 1000
+  rotationSpeed: 5000
+  bounceForce: 10
+  decelerationValue: 500
   stopThreshold: 1
 --- !u!54 &611123851883596063
 Rigidbody:

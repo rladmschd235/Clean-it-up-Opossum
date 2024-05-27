@@ -40,10 +40,10 @@ public class StageManager : MonoBehaviour
         chance = stageDB.StageDBEntities[stageNumber].level;
         clearCount = stageDB.StageDBEntities[stageNumber].clearCount;
 
-        while (GameObject.FindWithTag("Trash") == true)
-        {
-            GameObject.FindWithTag("Trash").gameObject.SetActive(true);
-        }
+        //while (GameObject.FindWithTag("Trash") == true) 문제 코드
+        //{
+        //    GameObject.FindWithTag("Trash").gameObject.SetActive(true);
+        //}
     }
 
     public void StageNumberUpdate()

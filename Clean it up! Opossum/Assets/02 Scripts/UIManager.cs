@@ -18,9 +18,6 @@ public class UIManager : MonoBehaviour
     public Button pauseButton;
     public Slider scoreSlider;
 
-    public Slider bgmSlider;
-    public Slider sfxSlider;
-
     public TextMeshProUGUI stageText;
 
     public GameObject chanceImagePrefab;
@@ -34,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        GameScenes.globalStageManager.StageSetting();
+        //GameScenes.globalStageManager.StageSetting();
 
         //CreateChanceImages();
 
@@ -190,15 +187,5 @@ public class UIManager : MonoBehaviour
                 chanceImages[i].SetActive(false);
             }
         }
-    }
-
-    public void SetBGMVolume(float volume)
-    {
-        GameScenes.globalSoundManager.SetBGMVolume(volume);
-    }
-
-    public void SetSFXVolume(float volume)
-    {
-        GameScenes.globalSoundManager.SetSFXVolume(volume);
     }
 }
