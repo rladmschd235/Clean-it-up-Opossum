@@ -40,10 +40,10 @@ public class StageManager : MonoBehaviour
         chance = stageDB.StageDBEntities[stageNumber].level;
         clearCount = stageDB.StageDBEntities[stageNumber].clearCount;
 
-        //while (GameObject.FindWithTag("Trash") == true) 문제 코드
-        //{
-        //    GameObject.FindWithTag("Trash").gameObject.SetActive(true);
-        //}
+        while (!GameObject.FindWithTag("Trash").gameObject.activeSelf)
+        {
+            GameObject.FindWithTag("Trash").gameObject.SetActive(true);
+        }
     }
 
     public void StageNumberUpdate()
@@ -51,7 +51,7 @@ public class StageManager : MonoBehaviour
         // 획득한 쓰레기 개수 초기화
         GameScenes.globalTrashChecker.SetTrashCount();
         // 다음 스테이지 활성화 & 현재 스테이지 비활성화
-        StageActivate(stageNumber);
+        // StageActivate(stageNumber);
 
         stageNumber++;
         StageNumberSave();
