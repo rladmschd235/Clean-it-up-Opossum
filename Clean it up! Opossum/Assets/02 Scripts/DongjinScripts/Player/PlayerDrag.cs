@@ -1,12 +1,13 @@
 using UnityEngine;
 using System; // System 네임스페이스 추가
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerDrag : MonoBehaviour
 {
     [SerializeField] private float maxDragDistance = 5.0f;  // 최대 드래그 거리
     [SerializeField] private float minDragDistance = 0.0f;  // 최소 드래그 거리
-    [SerializeField] public Transform[] startTrms;          //시작 지점
+    [SerializeField] public List<Transform> startTrms;      //시작 지점
 
     public event Action<Vector3, float> OnMoveStart; //움직임 전달
     public event Action<Vector3> OnDragStart;  // 드래그 시작 이벤트

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    private Vector3 savePos;
+    private Vector3 startPos;
 
     private void Update()
     {
@@ -13,19 +13,21 @@ public class PlayerRespawn : MonoBehaviour
 
     private void DeathCheck()
     {
-        if (transform.position.y <= -2f)
+        if (GameScenes.globalPlayerDrag.dragCnt == GameScenes.globalStageManager.chance && 
+            GameScenes.globalStageManager.clearCount > GameScenes.globalStageManager.trashCount)
         {
-            Invoke("PosLoad", 1f);
+            GameScenes.globalGameManager.GameOver();
+            PosLoad();
         }
     }
 
-    private void PosSave() // 드래그 시 위치 저장
+    public void PosSave()
     {
-        savePos = transform.position;
+        startPos = transform.position;
     }
 
-    private void PosLoad() // 저장 된 위치 불러오기
+    public void PosLoad() // 저장 된 위치 불러오기
     {
-        transform.position = savePos;
+        transform.position = startPos;
     }
 }
