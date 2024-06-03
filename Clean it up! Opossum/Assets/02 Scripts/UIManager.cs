@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowOverUI() // 게임 오버 UI 패널 활성화
     {
+        GameScenes.globalPlayerDrag.dragCnt = 0;
         HideAllUI();
         overUI.SetActive(true);
 
@@ -105,6 +106,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowClearUI() // 게임 클리어 UI 패널 활성화
     {
+        GameScenes.globalPlayerDrag.dragCnt = 0;
         GameScenes.globalStageManager.StageSetting();
         GameScenes.globalStageManager.StageNumberUpdate();
 
