@@ -22,11 +22,6 @@ public class SoundManager : MonoBehaviour
         GameScenes.globalSoundManager = this;
     }
 
-    private void Start()
-    {
-        
-    }
-
     public void PlayBGM(string name) // BGM ½ÇÇà
     {
         for (int i = 0; i < bgmSounds.Length; i++)

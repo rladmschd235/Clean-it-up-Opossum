@@ -22,6 +22,7 @@ public class TrashChecker : MonoBehaviour
         {
             trashCount++;
             GameScenes.globalUIManager.UpdateSlider();
+            GameScenes.globalSoundManager.PlaySFX("GetTrash");
             other.gameObject.SetActive(false);
         }
     }
