@@ -20,9 +20,7 @@ public class GameManager : MonoBehaviour
     {
         isGameStart = false;
 
-        // 메인 화면 UI 활성화
-        // 실행 화면 UI 활성화
-        // 재시작 화면 UI 비활성화
+        GameScenes.globalSoundManager.PlayBGM("BGM");
         GameScenes.globalUIManager.ShowMainUI();
     }
 
@@ -33,6 +31,7 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 활성화
         // 재시작 화면 UI 비활성화
+        GameScenes.globalSoundManager.PlayBGM("BGM");
         GameScenes.globalUIManager.ShowInGameUI();
     }
 
@@ -43,6 +42,8 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 비활성화 
         // 재시작 화면 UI 활성화
+        GameScenes.globalSoundManager.StopBGM();
+        GameScenes.globalSoundManager.PlaySFX("GameOver");
         GameScenes.globalUIManager.ShowOverUI();
     }
 
@@ -53,6 +54,8 @@ public class GameManager : MonoBehaviour
         // 메인 화면 UI 비활성화
         // 실행 화면 UI 비활성화 
         // 재시작 화면 UI 활성화
+        GameScenes.globalSoundManager.StopBGM();
+        GameScenes.globalSoundManager.PlaySFX("GameClear");
         GameScenes.globalUIManager.ShowClearUI();
     }
 }

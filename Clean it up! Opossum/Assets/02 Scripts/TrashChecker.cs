@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TrashChecker : MonoBehaviour
 {
+    public ParticleSystem effect;
+    
     public int trashCount = 0;
 
     private void Awake()
@@ -21,7 +23,15 @@ public class TrashChecker : MonoBehaviour
         if(other.CompareTag("Trash"))
         {
             trashCount++;
+            
             GameScenes.globalUIManager.UpdateSlider();
+            GameScenes.globalSoundManager.PlaySFX("GetTrash");
+
+            ParticleSystem effectObj = Instantiate(effect);
+            effectObj.transform.position = other.transform.position;
+            effectObj.Play();
+            Destroy(effectObj.gameObject, 1f);
+
             other.gameObject.SetActive(false);
         }
     }
