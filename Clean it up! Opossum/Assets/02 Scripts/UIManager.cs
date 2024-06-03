@@ -19,10 +19,7 @@ public class UIManager : MonoBehaviour
     public Slider scoreSlider;
 
     public TextMeshProUGUI stageText;
-
-    public GameObject chanceImagePrefab;
-    public Transform chanceImageContainer;
-    private List<GameObject> chanceImages = new List<GameObject>(); // 생성된 Chance 관리 리스트
+    public TextMeshProUGUI chanceText;
 
     private void Awake()
     {
@@ -32,8 +29,6 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         //GameScenes.globalStageManager.StageSetting();
-
-        //CreateChanceImages();
 
         // 슬라이더 초기값 설정
         //bgmSlider.value = GameScenes.globalSoundManager.audioSourceBgmPlayers.volume;
@@ -47,7 +42,8 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         //UpdateSlider();
-        //UpdateChanceImages();
+
+        chanceText.text = "CHANCE : " + GameScenes.globalStageManager.chance;
     }
 
     void HideAllUI() // 모든 UI 숨김
@@ -70,13 +66,12 @@ public class UIManager : MonoBehaviour
 
         stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
 
+
         inGameUI.SetActive(true);
 
         reButton.gameObject.SetActive(false);
         settingButton.gameObject.SetActive(true);
         pauseButton.gameObject.SetActive(true);
-
-        //CreateChanceImages(); // 새로운 스테이지 시작 시 chance 이미지 초기화
     }
 
     public void ShowMainUI() // 메인 화면 UI 패널 활성화
@@ -85,6 +80,7 @@ public class UIManager : MonoBehaviour
         mainUI.SetActive(true);
 
         stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
+
 
         reButton.gameObject.SetActive(true);
         settingButton.gameObject.SetActive(true);
@@ -151,41 +147,5 @@ public class UIManager : MonoBehaviour
     {
         settingUI.SetActive(true);
         Time.timeScale = 0;
-    }
-
-    private void CreateChanceImages()
-    {
-        // 기존의 이미지들을 삭제
-        foreach (GameObject image in chanceImages)
-        {
-            Destroy(image);
-        }
-        chanceImages.Clear();
-
-        // 새로운 chance 값에 따라 이미지 생성
-        int chanceCount = GameScenes.globalStageManager.chance;
-        for (int i = 0; i < chanceCount; i++)
-        {
-            GameObject newImage = Instantiate(chanceImagePrefab, chanceImageContainer);
-            chanceImages.Add(newImage);
-        }
-    }
-
-    private void UpdateChanceImages()
-    {
-        int remainingChances = GameScenes.globalStageManager.chance;
-
-        // 남아있는 chance 이미지 갯수 조정
-        for (int i = 0; i < chanceImages.Count; i++)
-        {
-            if (i < remainingChances)
-            {
-                chanceImages[i].SetActive(true);
-            }
-            else
-            {
-                chanceImages[i].SetActive(false);
-            }
-        }
     }
 }
