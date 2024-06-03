@@ -141,11 +141,13 @@ public class UIManager : MonoBehaviour
     {
         pauseUI.SetActive(true);
         Time.timeScale = 0;
+        GameScenes.globalSoundManager.PlaySFX("UIClick");
     }
 
     public void OnClickSettingButton()
     {
         settingUI.SetActive(true);
         Time.timeScale = 0;
+        GameScenes.globalSoundManager.PlaySFX("UIClick");
     }
 }
