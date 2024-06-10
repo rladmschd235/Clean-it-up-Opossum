@@ -482,8 +482,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uBC30\uACBD\uC74C\uC545"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b13f0e614b9761d4f8c3a2d61a4ecb28, type: 2}
-  m_sharedMaterial: {fileID: -2002648868478946716, guid: b13f0e614b9761d4f8c3a2d61a4ecb28, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1196,7 +1196,8 @@ MonoBehaviour:
   pauseButton: {fileID: 384498198}
   scoreSlider: {fileID: 616154752}
   stageText: {fileID: 693778101}
-  chanceText: {fileID: 0}
+  chanceImagePrefab: {fileID: 8002053794086445131, guid: dff5381bcdace0a4bb3aa6f2cc40faf4, type: 3}
+  chanceImageContainer: {fileID: 964951022}
 --- !u!114 &519016145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2026,8 +2027,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC124\uC815"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b13f0e614b9761d4f8c3a2d61a4ecb28, type: 2}
-  m_sharedMaterial: {fileID: -2002648868478946716, guid: b13f0e614b9761d4f8c3a2d61a4ecb28, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2279,8 +2280,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: N STAGE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b13f0e614b9761d4f8c3a2d61a4ecb28, type: 2}
-  m_sharedMaterial: {fileID: -2002648868478946716, guid: b13f0e614b9761d4f8c3a2d61a4ecb28, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
