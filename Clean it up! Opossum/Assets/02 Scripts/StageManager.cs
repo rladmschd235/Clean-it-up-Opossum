@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
@@ -25,11 +24,6 @@ public class StageManager : MonoBehaviour
     private void Awake()
     {
         GameScenes.globalStageManager = this;
-    }
-
-    private void Start()
-    {
-        StageActivate(stageNumber);
     }
 
     private void Update()
@@ -57,10 +51,9 @@ public class StageManager : MonoBehaviour
         // 획득한 쓰레기 개수 초기화
         GameScenes.globalTrashChecker.SetTrashCount();
         // 다음 스테이지 활성화 & 현재 스테이지 비활성화
-        StageOff(stageNumber);
+        // StageActivate(stageNumber);
+
         stageNumber++;
-        StageActivate(stageNumber);
-        
         StageNumberSave();
 
         if (stageNumber == stageDB.StageDBEntities.Count) // 마지막 스테이지라면 처음 스테이지로 초기화
@@ -89,13 +82,7 @@ public class StageManager : MonoBehaviour
 
     public void StageActivate(int stageNumber)
     {
-        var stageObj = transform.GetChild(stageNumber).gameObject;
-        stageObj.SetActive(true); // 다음 스테이지 활성화       
-        GameScenes.globalDragUIManager.SetArrow(stageObj.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>());
-    }
-    
-    public void StageOff(int stageNumber)
-    {
-        transform.GetChild(stageNumber).gameObject.SetActive(false); // 이전 스테이지 비활성화
+        transform.GetChild(stageNumber - 1).gameObject.SetActive(false); // 이전 스테이지 비활성화
+        transform.GetChild(stageNumber).gameObject.SetActive(true); // 다음 스테이지 활성화
     }
 }
