@@ -121,8 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialMoveForce: 50
   rotationSpeed: 10000
-  bounceForce: 50
-  decelerationValue: 946
+  bounceForce: 20
+  decelerationValue: 983
   stopThreshold: 1
 --- !u!114 &5554944291620922944
 MonoBehaviour:
@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7650339974923178818
 Transform:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2319192de9502e8438e20127736a97c6, type: 2}
+  - {fileID: 2100000, guid: 67625da21e859f3459b9eb1e32c8e956, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

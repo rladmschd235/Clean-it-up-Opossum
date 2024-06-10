@@ -29,8 +29,8 @@ MonoBehaviour:
     chance: 5
     clearCount: 6
   - level: 6
-    chance: 5
-    clearCount: 5
+    chance: 7
+    clearCount: 6
   - level: 7
     chance: 5
     clearCount: 5
