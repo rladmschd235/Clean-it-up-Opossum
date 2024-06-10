@@ -4534,7 +4534,8 @@ MonoBehaviour:
   pauseButton: {fileID: 1311911520}
   scoreSlider: {fileID: 2059807601}
   stageText: {fileID: 819428029}
-  chanceText: {fileID: 0}
+  chanceImagePrefab: {fileID: 8002053794086445131, guid: dff5381bcdace0a4bb3aa6f2cc40faf4, type: 3}
+  chanceImageContainer: {fileID: 1337375617}
 --- !u!114 &1833559768
 MonoBehaviour:
   m_ObjectHideFlags: 0
