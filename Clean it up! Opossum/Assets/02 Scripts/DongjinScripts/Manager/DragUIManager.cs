@@ -8,9 +8,9 @@ public class DragUIManager : MonoBehaviour
     public GameObject joystick; //조이스틱 최상위 오브젝트
 
     [SerializeField] private float maxDragDistance = 5f;
-    [SerializeField] private Image arrow;
     [SerializeField] private TextMeshProUGUI DragCnt;
     
+    private Image arrow;
     private Image[] joystickSet; //0번: 배경 / 1번: 레버
     private Vector3 leverStartPosition; // 레버의 초기 위치
 
@@ -61,5 +61,10 @@ public class DragUIManager : MonoBehaviour
         GameScenes.globalPlayerDrag.OnDragStart -= ShowIndicator;
         GameScenes.globalPlayerDrag.OnDrag -= UpdateIndicator;
         GameScenes.globalPlayerDrag.OnDragEnd -= HideIndicator;
+    }
+
+    public void SetArrow(Image setArrow)
+    {
+        arrow = setArrow;
     }
 }

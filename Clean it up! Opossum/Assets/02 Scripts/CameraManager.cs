@@ -9,7 +9,7 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void LateUpdate()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageManager : MonoBehaviour
 {
@@ -88,7 +89,9 @@ public class StageManager : MonoBehaviour
 
     public void StageActivate(int stageNumber)
     {
-        transform.GetChild(stageNumber).gameObject.SetActive(true); // 다음 스테이지 활성화
+        var stageObj = transform.GetChild(stageNumber).gameObject;
+        stageObj.SetActive(true); // 다음 스테이지 활성화       
+        GameScenes.globalDragUIManager.SetArrow(stageObj.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>());
     }
     
     public void StageOff(int stageNumber)
