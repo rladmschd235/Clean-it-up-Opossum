@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Transform player; // 플레이어의 Transform
+    private Transform player; // 플레이어의 Transform
     public Vector3 offset; // 카메라와 플레이어 사이의 거리
+
+    private void Update()
+    {
+        player = GameObject.Find("Player").transform;
+    }
 
     void LateUpdate()
     {

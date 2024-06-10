@@ -24,13 +24,13 @@ public class TrashChecker : MonoBehaviour
         {
             trashCount++;
             
-            GameScenes.globalUIManager.UpdateSlider();
-            GameScenes.globalSoundManager.PlaySFX("GetTrash");
+            //GameScenes.globalUIManager.UpdateSlider();
+            //GameScenes.globalSoundManager.PlaySFX("GetTrash");
 
-            ParticleSystem effectObj = Instantiate(effect);
-            effectObj.transform.position = other.transform.position;
-            effectObj.Play();
-            Destroy(effectObj.gameObject, 1f);
+            //ParticleSystem effectObj = Instantiate(effect);
+            //effectObj.transform.position = other.transform.position;
+            //effectObj.Play();
+            //Destroy(effectObj.gameObject, 1f);
 
             other.gameObject.SetActive(false);
         }
