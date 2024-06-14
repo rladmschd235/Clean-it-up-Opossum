@@ -19,5 +19,15 @@ public class TestMode : MonoBehaviour
             playerRb.velocity = Vector3.zero;
             GameScenes.globalPlayerMovement.SetRb(playerRb);
         }
+        if(Input.GetKey(KeyCode.D))
+        {
+            Stage6Load();
+        }
+    }
+
+    void Stage6Load()
+    {
+        PlayerPrefs.SetInt("StageNumber", 5);
+        GameScenes.globalStageManager.StageActivate(5);
     }
 }
