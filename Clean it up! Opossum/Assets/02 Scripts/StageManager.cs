@@ -30,12 +30,14 @@ public class StageManager : MonoBehaviour
     private void Start()
     {
         StageActivate(stageNumber);
+        StageSetting();
     }   
 
     private void Update()
     {
         if (GameScenes.globalTrashChecker.trashCount == clearCount)
         {
+            GameScenes.globalTrashChecker.SetTrashCount();
             GameScenes.globalGameManager.GameClear();
         }
     }
@@ -43,7 +45,7 @@ public class StageManager : MonoBehaviour
     public void StageSetting()
     {
         level = stageDB.StageDBEntities[stageNumber].level;
-        chance = stageDB.StageDBEntities[stageNumber].level;
+        chance = stageDB.StageDBEntities[stageNumber].chance;
         clearCount = stageDB.StageDBEntities[stageNumber].clearCount;
 
         while (!GameObject.FindWithTag("Trash").gameObject.activeSelf)
@@ -54,8 +56,6 @@ public class StageManager : MonoBehaviour
 
     public void StageNumberUpdate()
     {
-        // 획득한 쓰레기 개수 초기화
-        GameScenes.globalTrashChecker.SetTrashCount();
         // 다음 스테이지 활성화 & 현재 스테이지 비활성화
         StageOff(stageNumber);
         stageNumber++;
@@ -87,7 +87,7 @@ public class StageManager : MonoBehaviour
 
     public void StageActivate(int stageNumber)
     {
-        transform.GetChild(stageNumber).gameObject.SetActive(true); // 이전 스테이지 비활성화
+        transform.GetChild(stageNumber).gameObject.SetActive(true); // 다음 스테이지 활성화
 
         var stageObj = transform.GetChild(stageNumber).gameObject;
         GameScenes.globalDragUIManager.SetArrow(stageObj.transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<Image>());
@@ -95,6 +95,6 @@ public class StageManager : MonoBehaviour
 
     public void StageOff(int stageNumber)
     {
-        transform.GetChild(stageNumber).gameObject.SetActive(false); // 다음 스테이지 활성화
+        transform.GetChild(stageNumber).gameObject.SetActive(false); // 현재 스테이지 비활성화
     }
 }

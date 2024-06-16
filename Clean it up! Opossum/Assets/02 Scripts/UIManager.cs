@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     {
         //UpdateSlider();
 
-        chanceText.text = "CHANCE : " + GameScenes.globalStageManager.chance;
+        chanceText.text = "CHANCE : " + (GameScenes.globalStageManager.chance - GameScenes.globalPlayerDrag.dragCnt).ToString();
     }
 
     void HideAllUI() // ¸ðµç UI ¼û±è
@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
     {
         HideAllUI();
 
-        stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
+        stageText.text = (GameScenes.globalStageManager.stageNumber + 1).ToString() + " STAGE";
 
 
         inGameUI.SetActive(true);
@@ -79,8 +79,7 @@ public class UIManager : MonoBehaviour
         HideAllUI();
         mainUI.SetActive(true);
 
-        stageText.text = GameScenes.globalStageManager.stageNumber + " STAGE";
-
+        stageText.text = (GameScenes.globalStageManager.stageNumber + 1).ToString() + " STAGE";
 
         reButton.gameObject.SetActive(true);
         settingButton.gameObject.SetActive(true);
