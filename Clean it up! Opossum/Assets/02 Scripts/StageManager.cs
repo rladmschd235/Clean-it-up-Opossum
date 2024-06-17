@@ -47,25 +47,35 @@ public class StageManager : MonoBehaviour
         level = stageDB.StageDBEntities[stageNumber].level;
         chance = stageDB.StageDBEntities[stageNumber].chance;
         clearCount = stageDB.StageDBEntities[stageNumber].clearCount;
-
-        while (!GameObject.FindWithTag("Trash").gameObject.activeSelf)
-        {
-            GameObject.FindWithTag("Trash").gameObject.SetActive(true);
-        }
     }
 
-    public void StageNumberUpdate()
+    public void StageNextLoad()
     {
         // 다음 스테이지 활성화 & 현재 스테이지 비활성화
         StageOff(stageNumber);
         stageNumber++;
         StageActivate(stageNumber);
 
+        // 스테이지 정보 세팅 및 현재 스테이지 정보 저장
+        StageSetting();
+        StageNumberSave();
+
         if (stageNumber == stageDB.StageDBEntities.Count) // 마지막 스테이지라면 처음 스테이지로 초기화
         {
             // 스테이지 번호 초기화
             stageNumber = 0;
         }
+
+        GameScenes.globalGameManager.GamePlay();
+    }
+
+    public void StageReload()
+    {
+        GameScenes.globalGameManager.GamePlay();
+
+        GameScenes.globalTrashChecker.SetTrashCount();
+        GameScenes.globalPlayerRespawn.PosLoad(stageNumber);
+        GameScenes.globalObjectActiver.ObjectActiveOn();
     }
 
     public void StageNumberSave()

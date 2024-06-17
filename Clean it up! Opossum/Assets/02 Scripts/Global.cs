@@ -18,4 +18,5 @@ public class GameScenes
     public static DragUIManager globalDragUIManager;
     public static PlayerMovement globalPlayerMovement;
     public static UIManager globalUIManager;
+    public static ObjectActiver globalObjectActiver;
 }

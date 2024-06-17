@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         // 현재 속도를 감속 비율에 따라 감소시킴
         rb.velocity = new Vector3(rb.velocity.x * decelerationFactor, 0f, rb.velocity.z * decelerationFactor);
 
-        Debug.Log($"현재 속도: {rb.velocity.magnitude}");
+        // Debug.Log($"현재 속도: {rb.velocity.magnitude}");
 
         // 속도가 멈춤 기준 이하일 때 플레이어를 멈춤
         if (rb.velocity.magnitude < stopThreshold)
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             GameScenes.globalPlayerDrag.isMoving = false;
             bounceCount = 0;
-            Debug.Log("플레이어가 멈췄습니다.");
+            // Debug.Log("플레이어가 멈췄습니다.");
         }
     }
 
@@ -57,10 +57,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // 리지드바디에 초기 이동 힘을 가함
         Vector3 force = direction * power * initialMoveForce;
-        Debug.Log($"방향: {direction}, 힘: {force}");
+        // Debug.Log($"방향: {direction}, 힘: {force}");
         rb.AddForce(force, ForceMode.Impulse);
 
-        Debug.Log($"현재 속도: {rb.velocity.magnitude}");
+        // Debug.Log($"현재 속도: {rb.velocity.magnitude}");
 
         // 회전 토크를 추가
         rb.AddTorque(transform.up * rotationSpeed * Mathf.Deg2Rad, ForceMode.Impulse);
